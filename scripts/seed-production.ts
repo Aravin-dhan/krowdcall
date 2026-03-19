@@ -12,7 +12,7 @@
 import { randomUUID, createHash } from "node:crypto";
 import { createClient } from "@libsql/client";
 import bcrypt from "bcryptjs";
-import { electionPack2026 } from "../src/lib/election-pack.ts";
+import { electionPack2026 } from "../src/lib/election-pack";
 
 // ── DB connection ─────────────────────────────────────────────────────────────
 
