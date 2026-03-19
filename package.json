@@ -14,6 +14,7 @@
     "start:isolated": "NEXT_DIST_DIR=.next-build next start",
     "typecheck": "tsc --noEmit -p tsconfig.typecheck.json",
     "db:seed": "node --env-file=.env.local --experimental-strip-types scripts/seed.ts",
+    "db:seed:prod": "node --env-file=.env.production --experimental-strip-types scripts/seed-production.ts",
     "db:bootstrap-local": "node --env-file=.env.local --experimental-strip-types scripts/bootstrap_local_dev.ts"
   },
   "dependencies": {
