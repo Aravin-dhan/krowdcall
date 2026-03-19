@@ -31,7 +31,10 @@ export default async function LeaderboardPage() {
           Score is 0–100. Higher is better. Based on Brier accuracy across all resolved markets.
         </p>
         {leaderboard.length === 0 ? (
-          <p className="small-copy">No resolved forecasts yet.</p>
+          <div className="empty-state">
+            <h3>No scores yet</h3>
+            <p>Calibration scores appear once markets resolve. First state election markets close 01 May 2026 — place your forecasts now to get ranked.</p>
+          </div>
         ) : (
           leaderboard.map((row, index) => (
             <div className="table-row" key={row.id}>

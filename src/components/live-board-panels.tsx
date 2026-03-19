@@ -20,11 +20,15 @@ type PublicMarketSnapshot = {
   lastTickAt: string | null;
 };
 
+const LOCKING_SOON_DAYS = 7;
+
 function splitBoardMarkets(markets: PublicMarketSnapshot[]) {
+  const now = Date.now();
   const activeMarkets = markets.filter((m) => m.status === "active");
-  const lockingMarkets = [...activeMarkets]
-    .sort((a, b) => new Date(a.closeAt).getTime() - new Date(b.closeAt).getTime())
-    .slice(0, 6);
+  // "Locking next" = active markets closing within LOCKING_SOON_DAYS days
+  const lockingMarkets = activeMarkets.filter(
+    (m) => new Date(m.closeAt).getTime() - now < LOCKING_SOON_DAYS * 24 * 60 * 60 * 1000
+  );
   const resolvedMarkets = markets
     .filter((m) => m.status === "resolved")
     .sort((a, b) => new Date(b.closeAt).getTime() - new Date(a.closeAt).getTime())
@@ -227,16 +231,18 @@ export function LiveBoardPanels({ initialMarkets, userSignedIn = false }: LiveBo
         userSignedIn={userSignedIn}
       />
 
-      <MarketBoard
-        compact={density === "compact"}
-        emptyCopy="Nothing near lock."
-        emptyTitle="No near-lock markets"
-        flashMap={flashMap}
-        markets={lockingMarkets}
-        movements={movements}
-        title="About to lock"
-        userSignedIn={userSignedIn}
-      />
+      {lockingMarkets.length > 0 && (
+        <MarketBoard
+          compact={density === "compact"}
+          emptyCopy="Nothing near lock."
+          emptyTitle="No near-lock markets"
+          flashMap={flashMap}
+          markets={lockingMarkets}
+          movements={movements}
+          title="Closing this week"
+          userSignedIn={userSignedIn}
+        />
+      )}
 
       <MarketBoard
         compact={density === "compact"}

@@ -55,8 +55,8 @@ export default async function AuthPage({ searchParams }: AuthPageProps) {
         </div>
         {banner ? <p className={`form-message ${banner.status}`}>{banner.message}</p> : null}
         <PageIntro
-          eyebrow="Authentication"
-          title="Sign in only when you want to commit a forecast."
+          eyebrow="Free to join"
+          title="Your forecast. Your record."
         />
         <AuthPanels />
       </section>

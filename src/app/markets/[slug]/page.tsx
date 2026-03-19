@@ -47,7 +47,7 @@ export default async function MarketPage({ params, searchParams }: MarketPagePro
     <main className="site-shell landing-shell market-page-shell">
       <div className="stack">
         <div className="utility-row">
-          <Link className="button button-secondary" href="/">
+          <Link className="button button-secondary" href={user ? "/app" : "/"}>
             Back
           </Link>
           <ThemeToggle />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const STORAGE_KEY = "krowdcall-theme";
 
@@ -12,14 +12,14 @@ function applyTheme(nextTheme: Theme) {
 }
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("dark");
-
-  useEffect(() => {
-    const storedTheme = window.localStorage.getItem(STORAGE_KEY);
-    const nextTheme = storedTheme === "light" ? "light" : "dark";
-    setTheme(nextTheme);
-    applyTheme(nextTheme);
-  }, []);
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === "undefined") return "dark";
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+    const initial: Theme = stored === "light" ? "light" : "dark";
+    // Apply immediately so the DOM matches before first paint
+    document.documentElement.dataset.theme = initial;
+    return initial;
+  });
 
   function toggleTheme() {
     const nextTheme = theme === "dark" ? "light" : "dark";

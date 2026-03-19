@@ -493,6 +493,8 @@ html[data-theme="light"] .theme-toggle-thumb {
   font-size: 0.82rem;
   color: var(--muted);
   line-height: 1.5;
+  overflow-wrap: break-word;
+  min-width: 0;
 }
 
 .field-checkbox a {
@@ -1030,6 +1032,21 @@ html[data-theme="light"] .question-signal-bar {
 .profile-row,
 .admin-row {
   padding-bottom: var(--space-3);
+}
+
+a.profile-row-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+a.profile-row-link:hover {
+  background: #0f0f11;
+}
+
+html[data-theme="light"] a.profile-row-link:hover {
+  background: var(--surface-soft);
 }
 
 .admin-row-table {

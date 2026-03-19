@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "KrowdCall",
-  shortDescription: "Prediction board",
+  shortDescription: "Indian elections & world events",
   heroTitle: "Call it before the crowd.",
   sessionCookie: "krowdcall_session",
   themeStorageKey: "krowdcall-theme",

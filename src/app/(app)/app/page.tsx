@@ -54,11 +54,9 @@ export default async function DashboardPage() {
             <div className="chart-empty">No positions yet. Find a market below and place your first forecast.</div>
           ) : (
             forecasts.slice(0, 6).map(({ forecast, question }) => (
-              <article className="profile-row compact-profile-row" key={forecast.id}>
+              <Link className="profile-row compact-profile-row profile-row-link" href={`/markets/${question.slug}`} key={forecast.id}>
                 <div className="stack-xs">
-                  <Link href={`/markets/${question.slug}`}>
-                    <strong>{question.title}</strong>
-                  </Link>
+                  <strong>{question.title}</strong>
                   <span className="small-copy">
                     {forecast.side === "agree" ? "YES" : "NO"} ·{" "}
                     {Math.round(forecast.probability)}% · {formatCoins(forecast.stakeCoins)} coins
@@ -68,7 +66,7 @@ export default async function DashboardPage() {
                   <span className="small-copy">Status</span>
                   <strong>{question.status}</strong>
                 </div>
-              </article>
+              </Link>
             ))
           )}
         </section>
