@@ -1,11 +1,11 @@
 export const siteConfig = {
-  name: "KrowdCall",
+  name: "Pakka",
   shortDescription: "Indian elections & world events",
   heroTitle: "Call it before the crowd.",
-  sessionCookie: "krowdcall_session",
-  themeStorageKey: "krowdcall-theme",
-  grievanceEmail: "grievance@krowdcall.in",
-  contactEmail: "hello@krowdcall.in",
+  sessionCookie: "pakka_session",
+  themeStorageKey: "pakka-theme",
+  grievanceEmail: "grievance@pakka.in",
+  contactEmail: "hello@pakka.in",
   jurisdiction: "New Delhi, India"
 } as const;
 

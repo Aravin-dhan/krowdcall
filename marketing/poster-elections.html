@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pakka — Elections Poster</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body { background: #0a0a0a; padding: 40px; display: flex; flex-direction: column; gap: 40px; font-family: 'Inter', sans-serif; }
+
+  /* ── Poster 2: Elections Focus (1080×1920 Stories / 1080×1080 square) ── */
+  .poster {
+    width: 1080px;
+    height: 1080px;
+    background: #000;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 64px;
+    gap: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .poster::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,255,255,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(30,201,123,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .top { z-index: 1; display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-size: 16px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+  .live-badge {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(30,201,123,0.12);
+    border: 1px solid rgba(30,201,123,0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #1ec97b;
+  }
+  .live-dot { width: 6px; height: 6px; background: #1ec97b; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  .middle { z-index: 1; display: flex; flex-direction: column; justify-content: center; gap: 32px; }
+
+  .eyebrow {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+
+  h1 {
+    font-size: 72px; font-weight: 900; line-height: 1.05; color: #fff; letter-spacing: -2px;
+  }
+  h1 .accent { color: #1ec97b; }
+
+  .markets-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .market-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 20px 24px;
+  }
+
+  .market-title { font-size: 18px; font-weight: 600; color: rgba(255,255,255,0.85); max-width: 600px; }
+  .market-prob {
+    display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0;
+  }
+  .prob-val { font-size: 28px; font-weight: 800; color: #fff; }
+  .prob-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-top: 2px; }
+
+  .bottom { z-index: 1; display: flex; justify-content: space-between; align-items: flex-end; }
+  .cta {
+    font-size: 22px; font-weight: 700; color: #fff;
+  }
+  .cta span { color: rgba(255,255,255,0.4); font-weight: 400; }
+  .disclaimer { font-size: 11px; color: rgba(255,255,255,0.2); text-align: right; max-width: 300px; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<div class="poster">
+  <div class="top">
+    <div class="logo">Pakka</div>
+    <div class="live-badge"><span class="live-dot"></span> Live Markets</div>
+  </div>
+
+  <div class="middle">
+    <div class="eyebrow">2026 State Elections</div>
+    <h1>What does<br>India <span class="accent">think</span><br>will happen?</h1>
+
+    <div class="markets-grid">
+      <div class="market-row">
+        <div class="market-title">Will TMC win majority in West Bengal?</div>
+        <div class="market-prob">
+          <div class="prob-val">67%</div>
+          <div class="prob-label">crowd says yes</div>
+        </div>
+      </div>
+      <div class="market-row">
+        <div class="market-title">Will LDF retain power in Kerala?</div>
+        <div class="market-prob">
+          <div class="prob-val">44%</div>
+          <div class="prob-label">crowd says yes</div>
+        </div>
+      </div>
+      <div class="market-row">
+        <div class="market-title">Will DMK-led alliance win Tamil Nadu?</div>
+        <div class="market-prob">
+          <div class="prob-val">71%</div>
+          <div class="prob-label">crowd says yes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="cta">
+      Place your forecast free →<br>
+      <span>pakka.in</span>
+    </div>
+    <div class="disclaimer">Play-money predictions only.<br>No real money. No gambling. 18+ only.</div>
+  </div>
+</div>
+
+</body>
+</html>

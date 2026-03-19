@@ -30,7 +30,7 @@ import {
 } from "@/lib/db";
 import { sendPasswordResetEmail, sendVerificationEmail } from "@/lib/email";
 
-const SESSION_COOKIE = "krowdcall_session";
+const SESSION_COOKIE = "pakka_session";
 const SESSION_DAYS = 30;
 const EMAIL_TOKEN_HOURS = 24;
 const PASSWORD_RESET_HOURS = 2;

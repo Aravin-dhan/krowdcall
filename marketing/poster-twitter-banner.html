@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pakka — Twitter/X Banner</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #111; padding: 40px; font-family: 'Inter', sans-serif; }
+
+  /* Twitter/X header banner: 1500×500 */
+  .banner {
+    width: 1500px;
+    height: 500px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .banner::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 80% at 80% 50%, rgba(255,255,255,0.04) 0%, transparent 60%);
+  }
+
+  .left { z-index: 1; }
+
+  .logo-big {
+    font-size: 14px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 64px; font-weight: 900; color: #fff; letter-spacing: -2px; line-height: 1.0;
+    margin-bottom: 20px;
+  }
+
+  .tagline {
+    font-size: 20px; color: rgba(255,255,255,0.5); font-weight: 400;
+  }
+  .tagline strong { color: rgba(255,255,255,0.8); font-weight: 600; }
+
+  .right { z-index: 1; display: flex; flex-direction: column; gap: 16px; min-width: 420px; }
+
+  .pill-row { display: flex; gap: 12px; }
+
+  .pill {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    padding: 10px 20px;
+    font-size: 14px; font-weight: 600;
+    color: rgba(255,255,255,0.6);
+  }
+  .pill.green {
+    background: rgba(30,201,123,0.1);
+    border-color: rgba(30,201,123,0.2);
+    color: #1ec97b;
+  }
+
+  .market-preview {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 20px 24px;
+  }
+
+  .mp-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 8px; }
+  .mp-title { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 12px; }
+  .mp-bar { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
+  .mp-fill { height: 100%; width: 67%; background: #fff; border-radius: 2px; }
+  .mp-stats { display: flex; justify-content: space-between; margin-top: 8px; }
+  .mp-yes { font-size: 13px; font-weight: 700; color: #fff; }
+  .mp-forecasters { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+  /* WhatsApp forward poster: 800×800 */
+  .whatsapp {
+    width: 800px;
+    height: 800px;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 56px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 40px;
+  }
+
+  .whatsapp::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255,255,255,0.06) 0%, transparent 60%);
+  }
+
+  .wa-top { z-index: 1; display: flex; justify-content: space-between; align-items: center; }
+  .wa-logo { font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+  .wa-badge {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px; padding: 8px 16px;
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .wa-mid { z-index: 1; }
+
+  .wa-q {
+    font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3); margin-bottom: 16px;
+  }
+
+  .wa-h1 {
+    font-size: 52px; font-weight: 900; color: #fff; letter-spacing: -1.5px; line-height: 1.05;
+    margin-bottom: 24px;
+  }
+
+  .wa-sub {
+    font-size: 18px; color: rgba(255,255,255,0.5); line-height: 1.6;
+  }
+  .wa-sub strong { color: rgba(255,255,255,0.85); }
+
+  .wa-bottom { z-index: 1; }
+
+  .wa-features {
+    display: flex; gap: 16px; margin-bottom: 28px;
+  }
+  .wa-feat {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 14px 20px;
+    font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.6);
+    flex: 1; text-align: center;
+  }
+  .wa-feat span { display: block; font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+
+  .wa-url { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.35); }
+  .wa-disc { font-size: 11px; color: rgba(255,255,255,0.18); margin-top: 6px; }
+
+</style>
+</head>
+<body>
+
+<!-- TWITTER/X BANNER -->
+<div class="banner">
+  <div class="left">
+    <div class="logo-big">Pakka</div>
+    <h1>Prove you saw<br>it coming.</h1>
+    <div class="tagline">
+      <strong>Free prediction markets</strong> for Indian elections & world events.<br>
+      No money. Just bragging rights.
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="pill-row">
+      <div class="pill green">Free Forever</div>
+      <div class="pill">No Gambling</div>
+      <div class="pill">18+</div>
+    </div>
+
+    <div class="market-preview">
+      <div class="mp-label">Trending Market</div>
+      <div class="mp-title">Will TMC win majority in West Bengal?</div>
+      <div class="mp-bar"><div class="mp-fill"></div></div>
+      <div class="mp-stats">
+        <div class="mp-yes">67% YES</div>
+        <div class="mp-forecasters">9 forecasters</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHATSAPP FORWARD POSTER -->
+<div class="whatsapp">
+  <div class="wa-top">
+    <div class="wa-logo">Pakka</div>
+    <div class="wa-badge">Free • No Money</div>
+  </div>
+
+  <div class="wa-mid">
+    <div class="wa-q">Are you smarter than the crowd?</div>
+    <h1 class="wa-h1">Predict India.<br>Win bragging<br>rights.</h1>
+    <div class="wa-sub">
+      <strong>No gambling. No real money.</strong> Just place your opinion on<br>
+      Indian elections, cricket, and world events. Track your score.
+    </div>
+  </div>
+
+  <div class="wa-bottom">
+    <div class="wa-features">
+      <div class="wa-feat"><span>21</span>Live Markets</div>
+      <div class="wa-feat"><span>Free</span>Always</div>
+      <div class="wa-feat"><span>100%</span>Legal</div>
+    </div>
+    <div class="wa-url">→ pakka.in</div>
+    <div class="wa-disc">Play-money only. No real money involved. 18+ only. Not gambling.</div>
+  </div>
+</div>
+
+</body>
+</html>

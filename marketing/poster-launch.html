@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pakka — Launch Poster</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── Poster 1: Launch Announcement (1080×1080 Instagram/Twitter square) ── */
+  .poster {
+    width: 1080px;
+    height: 1080px;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 72px;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Background grid */
+  .poster::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Glow blobs */
+  .glow-1 {
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    pointer-events: none;
+  }
+  .glow-2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+    bottom: -80px; left: -80px;
+    pointer-events: none;
+  }
+
+  .top { position: relative; z-index: 1; }
+  .middle { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .bottom { position: relative; z-index: 1; }
+
+  .logo {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .badge-dot { width: 8px; height: 8px; background: #1ec97b; border-radius: 50%; }
+
+  h1 {
+    font-size: 96px;
+    font-weight: 900;
+    line-height: 1.0;
+    color: #fff;
+    letter-spacing: -3px;
+    margin-bottom: 32px;
+  }
+
+  h1 span { color: rgba(255,255,255,0.3); }
+
+  .sub {
+    font-size: 24px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 600px;
+  }
+
+  .sub strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+  .stats {
+    display: flex;
+    gap: 48px;
+    margin-bottom: 40px;
+  }
+
+  .stat { }
+  .stat-val {
+    font-size: 42px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+
+  .divider {
+    width: 1px;
+    height: 48px;
+    background: rgba(255,255,255,0.1);
+    align-self: center;
+  }
+
+  .url {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.05em;
+  }
+
+  .disclaimer {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    font-weight: 400;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body style="background:#111; padding:40px; display:flex; flex-direction:column; gap:40px; align-items:flex-start;">
+
+<!-- POSTER 1: Main Launch -->
+<div class="poster" id="poster1">
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+
+  <div class="top">
+    <div class="logo">Pakka</div>
+  </div>
+
+  <div class="middle">
+    <div class="badge"><span class="badge-dot"></span> Now Live</div>
+    <h1>Call it<br><span>before the</span><br>crowd.</h1>
+    <p class="sub">
+      Predict Indian elections & world events.<br>
+      <strong>No money. No gambling.</strong> Just your instincts vs everyone else.
+    </p>
+  </div>
+
+  <div class="bottom">
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-val">21</div>
+        <div class="stat-label">Live Markets</div>
+      </div>
+      <div class="divider"></div>
+      <div class="stat">
+        <div class="stat-val">Free</div>
+        <div class="stat-label">Always</div>
+      </div>
+      <div class="divider"></div>
+      <div class="stat">
+        <div class="stat-val">18+</div>
+        <div class="stat-label">Age Required</div>
+      </div>
+    </div>
+    <div class="url">pakka.in</div>
+    <div class="disclaimer">Play-money predictions only. No real money involved.</div>
+  </div>
+</div>
+
+</body>
+</html>

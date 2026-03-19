@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const STORAGE_KEY = "krowdcall-theme";
+const STORAGE_KEY = "pakka-theme";
 
 type Theme = "dark" | "light";
 
