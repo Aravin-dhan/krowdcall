@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>KrowdCall - Hero Poster</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1080px;
+    background: #000000;
+    color: #f4f4f5;
+    font-family: 'Inter', -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Subtle radial glow */
+  body::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .content {
+    text-align: center;
+    z-index: 1;
+    padding: 0 80px;
+  }
+
+  .brand {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8d8d93;
+    margin-bottom: 48px;
+  }
+
+  .headline {
+    font-size: 82px;
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 36px;
+    letter-spacing: -2px;
+  }
+
+  .headline em {
+    font-style: normal;
+    background: linear-gradient(135deg, #fff 0%, #a0a0a5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subline {
+    font-size: 26px;
+    font-weight: 400;
+    color: #8d8d93;
+    line-height: 1.5;
+    max-width: 700px;
+    margin: 0 auto 56px;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cta {
+    display: inline-block;
+    padding: 18px 44px;
+    background: #f4f4f5;
+    color: #000;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 14px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 14px;
+    font-size: 17px;
+    color: #8d8d93;
+    font-weight: 500;
+  }
+
+  .badge span { color: #1ec97b; font-weight: 700; }
+
+  .bottom-strip {
+    position: absolute;
+    bottom: 48px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    color: #5a5a5f;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .bottom-strip .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #5a5a5f;
+  }
+</style>
+</head>
+<body>
+  <div class="content">
+    <div class="brand">KrowdCall</div>
+    <h1 class="headline"><em>Call it before<br>the crowd.</em></h1>
+    <p class="subline">
+      Predict real-world outcomes. Earn coins when you're right.<br>
+      Free. No money. Just bragging rights.
+    </p>
+    <div class="cta-row">
+      <span class="cta">Sign up free</span>
+      <span class="badge"><span>LIVE</span> &mdash; 20+ markets open</span>
+    </div>
+  </div>
+  <div class="bottom-strip">
+    <span>krowdcall.in</span>
+    <span class="dot"></span>
+    <span>No real money</span>
+    <span class="dot"></span>
+    <span>18+</span>
+  </div>
+</body>
+</html>
