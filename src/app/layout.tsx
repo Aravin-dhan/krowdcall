@@ -18,9 +18,33 @@ const mono = JetBrains_Mono({
   weight: ["400", "600"]
 });
 
+const APP_URL = process.env.APP_URL ?? "https://cruxd.in";
+
 export const metadata: Metadata = {
-  title: "Cruxd",
-  description: "Predict outcomes on real events. No real money. Just skill."
+  metadataBase: new URL(APP_URL),
+  title: {
+    default: "Cruxd",
+    template: "%s | Cruxd"
+  },
+  description:
+    "India's prediction market for elections, cricket, and current events. Call outcomes with conviction. No real money — just skill.",
+  keywords: ["prediction market", "India", "elections", "cricket", "IPL", "forecasting"],
+  openGraph: {
+    type: "website",
+    siteName: "Cruxd",
+    title: "Cruxd — Call it before the crowd.",
+    description:
+      "India's prediction market for elections, cricket, and current events. No real money — just skill.",
+    url: APP_URL
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@cruxdin",
+    title: "Cruxd — Call it before the crowd.",
+    description:
+      "India's prediction market for elections, cricket, and current events. No real money — just skill."
+  },
+  robots: { index: true, follow: true }
 };
 
 export const viewport: Viewport = {

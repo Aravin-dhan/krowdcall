@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LiveMarketView } from "@/components/live-market-view";
@@ -9,6 +10,40 @@ import {
   getQuestionForecast
 } from "@/lib/db";
 import { buildPublicMarketActivity } from "@/lib/data";
+
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const question = await getQuestionBySlug(slug);
+
+  if (!question || question.status === "draft") {
+    return { title: "Market not found" };
+  }
+
+  const APP_URL = process.env.APP_URL ?? "https://cruxd.in";
+  const url = `${APP_URL}/markets/${slug}`;
+  const description = `${question.category} · ${question.description.slice(0, 120)}`;
+
+  return {
+    title: question.title,
+    description,
+    openGraph: {
+      type: "website",
+      url,
+      title: question.title,
+      description,
+      siteName: "Cruxd"
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: question.title,
+      description
+    }
+  };
+}
 
 type MarketPageProps = {
   params: Promise<{
