@@ -1909,6 +1909,72 @@ html[data-theme="light"] .chart-empty {
   color: var(--text);
 }
 
+/* ── Onboarding banner ───────────────────────────────── */
+
+.onboarding-banner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  border: 1px solid var(--outline-strong);
+}
+
+.onboarding-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.onboarding-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.onboarding-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-card);
+  background: var(--surface-soft);
+}
+
+.onboarding-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.onboarding-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--outline);
+  flex-wrap: wrap;
+}
+
+.onboarding-dismiss {
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .onboarding-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .onboarding-footer {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+}
+
+/* ── Legal copyright ─────────────────────────────────── */
+
 .legal-copyright {
   color: var(--muted);
   opacity: 0.7;

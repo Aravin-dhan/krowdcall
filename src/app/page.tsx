@@ -5,6 +5,7 @@ import { siteConfig } from "@/config/site";
 import { LiveBoardPanels } from "@/components/live-board-panels";
 import { LegalFooter } from "@/components/legal-footer";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { OnboardingBanner } from "@/components/onboarding-banner";
 
 export default async function HomePage() {
   const [user, markets] = await Promise.all([getCurrentUser(), buildPublicMarketSnapshots()]);
@@ -40,6 +41,8 @@ export default async function HomePage() {
           ) : null}
         </div>
       </section>
+
+      {!user && <OnboardingBanner />}
 
       <LiveBoardPanels initialMarkets={markets} userSignedIn={Boolean(user)} />
 
