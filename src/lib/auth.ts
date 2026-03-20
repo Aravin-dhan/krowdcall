@@ -36,9 +36,13 @@ const EMAIL_TOKEN_HOURS = 24;
 const PASSWORD_RESET_HOURS = 2;
 // AUTO_VERIFY=1 skips email verification entirely (set in Vercel until domain is verified)
 // AUTO_VERIFY_LOCAL=1 skips only in non-production (legacy dev flag)
-const AUTO_VERIFY_LOCAL =
-  process.env.AUTO_VERIFY === "1" ||
-  (process.env.AUTO_VERIFY_LOCAL === "1" && process.env.NODE_ENV !== "production");
+// Evaluated as a function so it re-reads env at call time (avoids any module-load caching issues)
+function shouldSkipEmailVerification() {
+  return (
+    process.env.AUTO_VERIFY === "1" ||
+    (process.env.AUTO_VERIFY_LOCAL === "1" && process.env.NODE_ENV !== "production")
+  );
+}
 
 type AuthResult =
   | {
@@ -304,7 +308,7 @@ export async function registerUser(input: {
   }
 
   const passwordHash = await hashPassword(input.password);
-  const shouldAutoVerify = AUTO_VERIFY_LOCAL;
+  const shouldAutoVerify = shouldSkipEmailVerification();
   const user = await createUser({
     email: normalizedEmail,
     displayName,
@@ -356,11 +360,11 @@ export async function loginUser(input: {
     return { ok: false, message: "Invalid email or password." };
   }
 
-  if (!user.emailVerifiedAt && AUTO_VERIFY_LOCAL) {
+  if (!user.emailVerifiedAt && shouldSkipEmailVerification()) {
     await markUserEmailVerified(user.id);
   }
 
-  if (!user.emailVerifiedAt && !AUTO_VERIFY_LOCAL) {
+  if (!user.emailVerifiedAt && !shouldSkipEmailVerification()) {
     try {
       await sendFreshVerificationEmail(user);
     } catch {

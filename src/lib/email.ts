@@ -38,7 +38,10 @@ async function sendEmail(input: {
     return { delivered: true as const };
   }
 
-  if (process.env.NODE_ENV === "production") {
+  if (
+    process.env.NODE_ENV === "production" &&
+    process.env.AUTO_VERIFY !== "1"
+  ) {
     throw new Error("Email delivery is not configured.");
   }
 
