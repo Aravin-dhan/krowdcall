@@ -109,7 +109,7 @@ button {
   cursor: pointer;
 }
 
-input,
+input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]),
 textarea,
 select {
   width: 100%;
@@ -2306,17 +2306,12 @@ html[data-theme="light"] .chart-empty {
   overflow: hidden;
 }
 
-.field-checkbox {
-  min-width: 0;
-  overflow: hidden;
-}
-
 .field-checkbox span {
+  flex: 1;
   min-width: 0;
   overflow-wrap: break-word;
   word-break: break-word;
   white-space: normal;
-  flex: 1;
 }
 
 /* Form divider (forgot password etc) */
