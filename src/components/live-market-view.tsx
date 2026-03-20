@@ -17,6 +17,7 @@ import type {
 } from "@/lib/schema";
 import {
   formatCoins,
+  formatDate,
   formatSignedDelta,
   getNoPrice,
   getPayoutMultiplier,
@@ -246,11 +247,8 @@ export function LiveMarketView({
           <section className="panel stack">
             <div className="section-header">
               <h2>Resolution</h2>
-              <span className="small-copy">
-                {new Date(question.closeAt).toLocaleString("en-IN", {
-                  dateStyle: "medium",
-                  timeStyle: "short"
-                })}
+              <span className="small-copy" suppressHydrationWarning>
+                {formatDate(question.closeAt)}
               </span>
             </div>
             <div className="resolution-grid">

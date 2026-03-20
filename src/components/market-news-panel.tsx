@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { formatShortDate } from "@/lib/utils";
 
 type NewsItem = {
   title: string;
@@ -77,10 +78,7 @@ export function MarketNewsPanel({ slug }: MarketNewsPanelProps) {
                 <span className="small-copy">
                   {item.source}
                   {item.publishedAt
-                    ? ` · ${new Date(item.publishedAt).toLocaleDateString("en-IN", {
-                        day: "2-digit",
-                        month: "short"
-                      })}`
+                    ? ` · ${formatShortDate(item.publishedAt)}`
                     : ""}
                 </span>
               </div>

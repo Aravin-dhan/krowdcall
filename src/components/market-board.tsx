@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { QuickTradeTrigger } from "@/components/quick-trade-trigger";
-import { formatSignedDelta, getNoPrice, getPayoutMultiplier, getYesPrice } from "@/lib/utils";
+import { formatShortDate, formatShortTime, formatSignedDelta, getNoPrice, getPayoutMultiplier, getYesPrice } from "@/lib/utils";
 
 type MarketSnapshot = {
   id: string;
@@ -146,12 +146,8 @@ export function MarketBoard({
                   <strong>{market.title}</strong>
                   <div className="market-row-subcopy">
                     {market.lastTickAt ? (
-                      <span className="small-copy">
-                        Last trade{" "}
-                        {new Date(market.lastTickAt).toLocaleTimeString("en-IN", {
-                          hour: "2-digit",
-                          minute: "2-digit"
-                        })}
+                      <span className="small-copy" suppressHydrationWarning>
+                        Last trade {formatShortTime(market.lastTickAt)}
                       </span>
                     ) : (
                       <span className="small-copy">No trades yet</span>
@@ -188,11 +184,8 @@ export function MarketBoard({
 
                 <LinkedCell href={`/markets/${market.slug}`} label="Lock">
                   <strong>{formatLockLabel(market)}</strong>
-                  <span className="small-copy">
-                    {new Date(market.closeAt).toLocaleDateString("en-IN", {
-                      day: "2-digit",
-                      month: "short"
-                    })}
+                  <span className="small-copy" suppressHydrationWarning>
+                    {formatShortDate(market.closeAt)}
                   </span>
                 </LinkedCell>
 

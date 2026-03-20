@@ -1,5 +1,5 @@
 import type { AppForecastTick } from "@/lib/schema";
-import { formatDate } from "@/lib/utils";
+import { formatShortTime } from "@/lib/utils";
 
 type MarketHistoryProps = {
   ticks: AppForecastTick[];
@@ -66,8 +66,8 @@ export function MarketHistory({ ticks }: MarketHistoryProps) {
       </div>
       {ticks.length > 1 && (
         <div className="chart-time-axis">
-          <span>{formatDate(ticks[0].createdAt)}</span>
-          <span>{formatDate(ticks[ticks.length - 1].createdAt)}</span>
+          <span suppressHydrationWarning>{formatDate(ticks[0].createdAt)}</span>
+          <span suppressHydrationWarning>{formatDate(ticks[ticks.length - 1].createdAt)}</span>
         </div>
       )}
 
@@ -80,7 +80,7 @@ export function MarketHistory({ ticks }: MarketHistoryProps) {
         </div>
         {recentMoves.map((tick) => (
           <div className="tape-row" key={tick.id}>
-            <span>{new Date(tick.createdAt).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" })}</span>
+            <span suppressHydrationWarning>{formatShortTime(tick.createdAt)}</span>
             <span>{tick.side === "agree" ? "YES" : "NO"}</span>
             <strong>{Math.round(tick.probability)}%</strong>
             <span>{tick.stakeCoins} coins</span>

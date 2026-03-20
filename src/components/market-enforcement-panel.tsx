@@ -31,7 +31,7 @@ export function MarketEnforcementPanel({
             <article className="audit-row" key={event.id}>
               <div className="stack-xs">
                 <strong>{event.note}</strong>
-                <span className="small-copy">
+                <span className="small-copy" suppressHydrationWarning>
                   {actor?.displayName ?? "System"} · {event.type} · {formatDate(event.createdAt)}
                 </span>
               </div>
@@ -58,7 +58,7 @@ export function MarketEnforcementPanel({
                   </span>
                 </div>
                 <strong>{dispute.message}</strong>
-                <span className="small-copy">
+                <span className="small-copy" suppressHydrationWarning>
                   {creator.displayName} · {formatDate(dispute.createdAt)}
                 </span>
                 {dispute.resolutionNote ? (

@@ -2,11 +2,33 @@ export function cn(...values: Array<string | false | null | undefined>) {
   return values.filter(Boolean).join(" ");
 }
 
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+// All date helpers use UTC to ensure server (UTC) and browser render identically.
 export function formatDate(value: string) {
-  return new Intl.DateTimeFormat("en-IN", {
-    dateStyle: "medium",
-    timeStyle: "short"
-  }).format(new Date(value));
+  const d = new Date(value);
+  const day = d.getUTCDate();
+  const mon = MONTHS[d.getUTCMonth()];
+  const yr = d.getUTCFullYear();
+  const h = d.getUTCHours();
+  const m = d.getUTCMinutes().toString().padStart(2, "0");
+  const ampm = h >= 12 ? "pm" : "am";
+  const hr = h % 12 || 12;
+  return `${day} ${mon} ${yr}, ${hr}:${m} ${ampm}`;
+}
+
+export function formatShortDate(value: string) {
+  const d = new Date(value);
+  return `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+}
+
+export function formatShortTime(value: string) {
+  const d = new Date(value);
+  const h = d.getUTCHours();
+  const m = d.getUTCMinutes().toString().padStart(2, "0");
+  const ampm = h >= 12 ? "pm" : "am";
+  const hr = h % 12 || 12;
+  return `${hr}:${m} ${ampm}`;
 }
 
 export function formatRelativeClose(value: string) {
