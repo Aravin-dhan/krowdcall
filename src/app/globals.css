@@ -81,8 +81,11 @@ body {
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
-  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+  font-family: var(--font-body, "Plus Jakarta Sans"), "Segoe UI", sans-serif;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 a {
@@ -151,29 +154,34 @@ h2,
 h3,
 strong,
 .brand-mark {
-  font-family: "Avenir Next Condensed", "Franklin Gothic Medium", "Arial Narrow", sans-serif;
-  letter-spacing: 0.01em;
+  font-family: var(--font-body, "Plus Jakarta Sans"), sans-serif;
+  letter-spacing: -0.02em;
 }
 
 code,
 .market-board-cell strong,
 .stat-card strong,
 .forecast-value,
-.trade-ribbon strong {
-  font-family: "SF Mono", "IBM Plex Mono", "Menlo", monospace;
+.trade-ribbon strong,
+.price-num {
+  font-family: var(--font-mono, "JetBrains Mono"), "IBM Plex Mono", monospace;
+  letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: clamp(1.75rem, 5vw, 3.15rem);
-  line-height: 0.98;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 0.96;
+  font-weight: 800;
 }
 
 h2 {
-  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 700;
 }
 
 h3 {
-  font-size: 1.05rem;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .hero-copy p,
@@ -191,7 +199,9 @@ h3 {
 }
 
 .brand-mark {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
 }
 
 .eyebrow {
@@ -250,6 +260,7 @@ h3 {
   border: 1px solid var(--outline);
   background: var(--surface);
   padding: var(--space-4);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.18);
 }
 
 .masthead-panel {
@@ -368,24 +379,45 @@ h3 {
   color: #050505;
   background: #f5f5f5;
   border-color: #f5f5f5;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .button-secondary {
   color: var(--text);
   background: #0f0f10;
   border-color: var(--outline);
+  font-weight: 600;
 }
 
 .button-buy {
-  color: #041109;
+  color: #021008;
   background: var(--success);
-  border-color: rgba(30, 201, 123, 0.18);
+  border-color: rgba(30, 201, 123, 0.4);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  font-size: 0.78rem;
+  box-shadow: 0 2px 8px rgba(30, 201, 123, 0.25);
+}
+
+.button-buy:hover {
+  background: #22e589;
+  box-shadow: 0 4px 16px rgba(30, 201, 123, 0.4);
 }
 
 .button-sell {
-  color: #1c0606;
+  color: #160202;
   background: var(--danger);
-  border-color: rgba(255, 92, 92, 0.18);
+  border-color: rgba(255, 92, 92, 0.4);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  font-size: 0.78rem;
+  box-shadow: 0 2px 8px rgba(255, 92, 92, 0.25);
+}
+
+.button-sell:hover {
+  background: #ff7070;
+  box-shadow: 0 4px 16px rgba(255, 92, 92, 0.4);
 }
 
 .theme-toggle {
@@ -564,6 +596,14 @@ html[data-theme="light"] .theme-toggle-thumb {
   height: 0.6rem;
   border-radius: 999px;
   background: var(--success);
+  box-shadow: 0 0 0 0 rgba(30, 201, 123, 0.5);
+  animation: live-pulse 2s ease infinite;
+}
+
+@keyframes live-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(30, 201, 123, 0.5); }
+  70%  { box-shadow: 0 0 0 6px rgba(30, 201, 123, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(30, 201, 123, 0); }
 }
 
 .category-strip {
@@ -576,20 +616,29 @@ html[data-theme="light"] .theme-toggle-thumb {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 38px;
-  padding: 0.52rem 0.85rem;
+  min-height: 34px;
+  padding: 0.4rem 0.9rem;
   border-radius: 999px;
   border: 1px solid var(--outline);
   background: var(--surface-soft);
-  font-family: "Avenir Next Condensed", "Franklin Gothic Medium", "Arial Narrow", sans-serif;
+  font-family: var(--font-body, "Plus Jakarta Sans"), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 150ms ease, border-color 150ms ease;
+  transition: all 150ms ease;
+  white-space: nowrap;
+}
+
+.category-chip:hover {
+  border-color: var(--outline-strong);
+  background: var(--surface-strong);
 }
 
 .category-chip-active {
   background: var(--text);
   border-color: var(--text);
   color: var(--bg);
+  box-shadow: 0 2px 8px rgba(255,255,255,0.12);
 }
 
 .board-filter-bar {
@@ -610,21 +659,31 @@ html[data-theme="light"] .theme-toggle-thumb {
 }
 
 @keyframes row-flash-up {
-  0% { background: rgba(30, 201, 123, 0.12); }
-  100% { background: transparent; }
+  0%   { background: rgba(30, 201, 123, 0.18); border-color: rgba(30, 201, 123, 0.35); }
+  60%  { background: rgba(30, 201, 123, 0.08); }
+  100% { background: transparent; border-color: var(--outline); }
 }
 
 @keyframes row-flash-down {
-  0% { background: rgba(255, 92, 92, 0.12); }
-  100% { background: transparent; }
+  0%   { background: rgba(255, 92, 92, 0.18); border-color: rgba(255, 92, 92, 0.35); }
+  60%  { background: rgba(255, 92, 92, 0.08); }
+  100% { background: transparent; border-color: var(--outline); }
 }
 
 .market-board-row-flash-up {
-  animation: row-flash-up 0.9s ease-out forwards;
+  animation: row-flash-up 1.1s ease-out forwards;
+}
+
+.market-board-row-flash-up::before {
+  background: var(--success) !important;
 }
 
 .market-board-row-flash-down {
-  animation: row-flash-down 0.9s ease-out forwards;
+  animation: row-flash-down 1.1s ease-out forwards;
+}
+
+.market-board-row-flash-down::before {
+  background: var(--danger) !important;
 }
 
 .score-bar-shell {
@@ -708,6 +767,23 @@ html[data-theme="light"] .theme-toggle-thumb {
   border-bottom: 1px solid var(--outline);
   background: transparent;
   transition: border-color 150ms ease, background-color 150ms ease;
+  position: relative;
+}
+
+.market-board-row::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 20%;
+  height: 60%;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--outline);
+  transition: background 0.2s;
+}
+
+.market-board-row:hover::before {
+  background: var(--accent);
 }
 
 .board-compact .market-board-row {
@@ -829,7 +905,10 @@ html[data-theme="light"] .theme-toggle-thumb {
 }
 
 .price-cell strong {
-  font-size: 1rem;
+  font-size: 1.15rem;
+  font-family: var(--font-mono, "JetBrains Mono"), monospace;
+  letter-spacing: -0.03em;
+  font-weight: 600;
 }
 
 .move-tag {
@@ -892,11 +971,12 @@ html[data-theme="light"] .theme-toggle-thumb {
 
 .row-sparkline path {
   fill: none;
-  stroke: var(--text);
+  stroke: var(--success);
   stroke-width: 6;
   vector-effect: non-scaling-stroke;
   stroke-linecap: round;
   stroke-linejoin: round;
+  opacity: 0.85;
 }
 
 .question-signal-bar {
@@ -1287,12 +1367,27 @@ html[data-theme="light"] .chart-empty {
 
 .summary-chip {
   display: grid;
-  gap: 0.1rem;
+  gap: 0.15rem;
   min-width: 108px;
-  padding: 0.85rem 1rem;
+  padding: 0.9rem 1.1rem;
   border-radius: 14px;
   border: 1px solid var(--outline);
   background: #0b0b0c;
+  transition: border-color 0.15s;
+}
+
+.summary-chip strong {
+  font-family: var(--font-mono, "JetBrains Mono"), monospace;
+  font-size: 1.3rem;
+  letter-spacing: -0.04em;
+}
+
+.summary-chip-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .summary-chip-up {
