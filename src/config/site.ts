@@ -1,11 +1,11 @@
 export const siteConfig = {
-  name: "Pakka",
+  name: "Cruxd",
   shortDescription: "Indian elections & world events",
   heroTitle: "Call it before the crowd.",
-  sessionCookie: "pakka_session",
-  themeStorageKey: "pakka-theme",
-  grievanceEmail: "grievance@pakka.in",
-  contactEmail: "hello@pakka.in",
+  sessionCookie: "cruxd_session",
+  themeStorageKey: "cruxd-theme",
+  grievanceEmail: "grievance@cruxd.in",
+  contactEmail: "hello@cruxd.in",
   jurisdiction: "New Delhi, India"
 } as const;
 

@@ -55,7 +55,7 @@ export async function sendVerificationEmail(input: {
 
   return sendEmail({
     to: input.email,
-    subject: "Verify your Pakka account",
+    subject: "Verify your Cruxd account",
     text: `Hi ${input.displayName}, verify your email to activate your account: ${verifyUrl}`,
     html: `<p>Hi ${input.displayName},</p><p>Verify your email to activate your account.</p><p><a href="${verifyUrl}">Verify account</a></p><p>If you did not create this account, ignore this email.</p>`
   });
@@ -70,7 +70,7 @@ export async function sendPasswordResetEmail(input: {
 
   return sendEmail({
     to: input.email,
-    subject: "Reset your Pakka password",
+    subject: "Reset your Cruxd password",
     text: `Hi ${input.displayName}, use this link to reset your password: ${resetUrl}`,
     html: `<p>Hi ${input.displayName},</p><p>Use the link below to reset your password.</p><p><a href="${resetUrl}">Reset password</a></p><p>If you did not request this, ignore this email.</p>`
   });

@@ -3,7 +3,7 @@ export default function Loading() {
     <main className="site-shell landing-shell board-shell">
       <section className="panel top-strip">
         <div className="top-strip-copy">
-          <span className="brand-mark">Pakka</span>
+          <span className="brand-mark">Cruxd</span>
           <span className="small-copy">Loading</span>
         </div>
       </section>

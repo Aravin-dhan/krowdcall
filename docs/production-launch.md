@@ -1,4 +1,4 @@
-# Pakka Production Launch Guide
+# Cruxd Production Launch Guide
 
 Everything here uses free tiers. Total cost: ~$6-10/year for the domain only.
 
@@ -18,14 +18,14 @@ curl -sSfL https://get.tur.so/install.sh | bash
 turso auth login
 
 # Create database
-turso db create pakka
+turso db create cruxd
 
 # Get the connection URL
-turso db show pakka --url
-# Output: libsql://pakka-<your-username>.turso.io
+turso db show cruxd --url
+# Output: libsql://cruxd-<your-username>.turso.io
 
 # Create an auth token
-turso db tokens create pakka
+turso db tokens create cruxd
 # Output: eyJhbG...  (save this)
 ```
 
@@ -34,7 +34,7 @@ turso db tokens create pakka
 The app already supports both `TURSO_DATABASE_URL`/`TURSO_AUTH_TOKEN` and `DATABASE_URL`/`DATABASE_AUTH_TOKEN`. No code changes needed.
 
 ```
-DATABASE_URL=libsql://pakka-<your-username>.turso.io
+DATABASE_URL=libsql://cruxd-<your-username>.turso.io
 DATABASE_AUTH_TOKEN=eyJhbG...
 ```
 
@@ -43,7 +43,7 @@ DATABASE_AUTH_TOKEN=eyJhbG...
 Run the seed against production:
 
 ```bash
-DATABASE_URL=libsql://pakka-xxx.turso.io \
+DATABASE_URL=libsql://cruxd-xxx.turso.io \
 DATABASE_AUTH_TOKEN=eyJhbG... \
 node --env-file=.env.production scripts/seed.ts
 ```
@@ -65,7 +65,7 @@ node --env-file=.env.production scripts/seed.ts
 
 ```
 RESEND_API_KEY=re_LIVE_xxxxxxxxxxxx
-EMAIL_FROM="Pakka <hello@yourdomain.in>"
+EMAIL_FROM="Cruxd <hello@yourdomain.in>"
 ```
 
 **Note:** Until you verify a domain, you can only send to your own email. Verify the domain before inviting users.
@@ -98,10 +98,10 @@ In Vercel dashboard (Settings > Environment Variables), add:
 
 | Variable | Value | Environment |
 |----------|-------|-------------|
-| `DATABASE_URL` | `libsql://pakka-xxx.turso.io` | Production |
+| `DATABASE_URL` | `libsql://cruxd-xxx.turso.io` | Production |
 | `DATABASE_AUTH_TOKEN` | `eyJhbG...` | Production |
 | `RESEND_API_KEY` | `re_LIVE_xxx` | Production |
-| `EMAIL_FROM` | `Pakka <hello@yourdomain.in>` | Production |
+| `EMAIL_FROM` | `Cruxd <hello@yourdomain.in>` | Production |
 | `APP_URL` | `https://yourdomain.in` | Production |
 | `ADMIN_EMAIL` | `your-real-email@gmail.com` | Production |
 
@@ -128,7 +128,7 @@ Recommended registrars for `.in` domains:
 | [GoDaddy](https://godaddy.com) | ~$6-10/yr | Most popular |
 | [Cloudflare](https://cloudflare.com) | At-cost pricing | Best value, free DNS/CDN |
 
-Check availability: `pakka.in`, `pakka.co.in`, `pakka.com`
+Check availability: `cruxd.in`, `cruxd.co.in`, `cruxd.com`
 
 ---
 

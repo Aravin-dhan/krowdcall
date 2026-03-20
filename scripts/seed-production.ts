@@ -1,5 +1,5 @@
 /**
- * Pakka — Production Seed Script
+ * Cruxd — Production Seed Script
  * Creates schema, admin user, fake community users, all 21 markets, and seed forecasts.
  *
  * Usage (against production Turso):
@@ -60,7 +60,7 @@ const FAKE_USERS = [
   { displayName: "Arjun Mehta",      email: "arjun.mehta.pred@gmail.com"   },
   { displayName: "Deepika Iyer",     email: "deepika.iyer.kc@gmail.com"    },
   { displayName: "Karthik Rajan",    email: "karthik.rajan.fc@gmail.com"   },
-  { displayName: "Sneha Patel",      email: "sneha.patel.pakka@gmail.com" },
+  { displayName: "Sneha Patel",      email: "sneha.patel.cruxd@gmail.com" },
   { displayName: "Vikram Bose",      email: "vikram.bose.markets@gmail.com"   },
   { displayName: "Ananya Krishnan",  email: "ananya.krishnan.fc@gmail.com"    },
   { displayName: "Rahul Verma",      email: "rahulverma.calls@gmail.com"   },
@@ -214,7 +214,7 @@ async function createSchema() {
 async function createAdminUser() {
   console.log("Creating system admin user...");
 
-  const adminEmail = process.env.ADMIN_EMAIL ?? "admin@pakka.in";
+  const adminEmail = process.env.ADMIN_EMAIL ?? "admin@cruxd.in";
   const existing = await client.execute({
     sql: "SELECT id FROM users WHERE email = ?",
     args: [adminEmail]
@@ -230,7 +230,7 @@ async function createAdminUser() {
   await client.execute({
     sql: `INSERT OR IGNORE INTO users (id, email, display_name, password_hash, role, email_verified_at, created_at)
           VALUES (?, ?, ?, ?, ?, ?, ?)`,
-    args: [adminId, adminEmail, "Pakka Admin", passwordHash, "admin", now(), now()]
+    args: [adminId, adminEmail, "Cruxd Admin", passwordHash, "admin", now(), now()]
   });
 
   console.log(`  Admin created: ${adminEmail}`);
@@ -353,7 +353,7 @@ async function createSeedForecasts(userIds: string[], questionIds: string[]) {
 }
 
 async function main() {
-  console.log(`\nPakka Production Seed`);
+  console.log(`\nCruxd Production Seed`);
   console.log(`DB: ${databaseUrl}\n`);
 
   await createSchema();
@@ -363,7 +363,7 @@ async function main() {
   await createSeedForecasts(userIds, questionIds);
 
   console.log("\nSeed complete!");
-  console.log(`  Admin email:   ${process.env.ADMIN_EMAIL ?? "admin@pakka.in"}`);
+  console.log(`  Admin email:   ${process.env.ADMIN_EMAIL ?? "admin@cruxd.in"}`);
   console.log(`  Markets:       ${questionIds.length}`);
   console.log(`  Community:     ${userIds.length} users`);
   console.log(`\nNext: Go to ${process.env.APP_URL ?? "your app URL"} and sign up with`);

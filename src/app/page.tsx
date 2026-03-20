@@ -27,7 +27,7 @@ export default async function HomePage() {
       <section className="board-hero panel">
         <div className="board-hero-copy stack-xs">
           <span className="eyebrow">Public market</span>
-          <h1>Pakka hai?</h1>
+          <h1>Get to the crux.</h1>
           <p className="small-copy">Predict yes/no outcomes on real events. Earn coins when you&apos;re right. No real money.</p>
         </div>
         <div className="board-summary-row board-summary-row-spread">

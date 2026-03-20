@@ -4,7 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Pakka",
+  title: "Cruxd",
   description: "Predict outcomes on real events. No real money. Just skill."
 };
 
@@ -24,7 +24,7 @@ export default function RootLayout({
           {`
             (() => {
               try {
-                const storedTheme = window.localStorage.getItem("pakka-theme");
+                const storedTheme = window.localStorage.getItem("cruxd-theme");
                 const nextTheme = storedTheme === "light" ? "light" : "dark";
                 document.documentElement.dataset.theme = nextTheme;
               } catch {

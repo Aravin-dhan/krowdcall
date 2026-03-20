@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const STORAGE_KEY = "pakka-theme";
+const STORAGE_KEY = "cruxd-theme";
 
 type Theme = "dark" | "light";
 
