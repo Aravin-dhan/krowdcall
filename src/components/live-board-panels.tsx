@@ -190,13 +190,19 @@ export function LiveBoardPanels({ initialMarkets, userSignedIn = false }: LiveBo
       </div>
 
       <div className="board-filter-bar">
-        <input
-          className="board-search-input"
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search markets…"
-          type="search"
-          value={searchQuery}
-        />
+        <div className="board-search-wrap">
+          <svg className="search-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="7" cy="7" r="4.5" stroke="currentColor" strokeWidth="1.5"/>
+            <path d="M11 11L14 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
+          <input
+            className="board-search-input"
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search markets…"
+            type="search"
+            value={searchQuery}
+          />
+        </div>
         {categories.length > 1 && (
           <div className="category-strip">
             <button

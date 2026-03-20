@@ -44,6 +44,22 @@ function LinkedCell({ href, label, children, className }: LinkedCellProps) {
   );
 }
 
+function getCategoryIcon(category: string): string {
+  const c = category.toLowerCase();
+  if (c.includes("cricket")) return "🏏";
+  if (c.includes("general election") || c.includes("lok sabha")) return "🏛️";
+  if (c.includes("west bengal")) return "🪷"; // lotus — state flower of WB
+  if (c.includes("kerala")) return "🌴";
+  if (c.includes("tamil") || c.includes("tn")) return "🏺";
+  if (c.includes("assam")) return "🦏";
+  if (c.includes("puducherry") || c.includes("pondicherry")) return "🌊";
+  if (c.includes("world") || c.includes("global") || c.includes("us ") || c.includes("usa")) return "🌍";
+  if (c.includes("economy") || c.includes("market") || c.includes("finance")) return "📈";
+  if (c.includes("tech") || c.includes("ai")) return "💡";
+  if (c.includes("election") || c.includes("vote") || c.includes("poll")) return "🗳️";
+  return "🔮";
+}
+
 function formatLockLabel(market: MarketSnapshot) {
   if (market.status === "resolved") {
     return "Resolved";
@@ -132,32 +148,35 @@ export function MarketBoard({
                 key={market.id}
               >
                 <Link className="market-board-main market-board-link" href={`/markets/${market.slug}`}>
-                  <div className="question-meta">
-                    <span className="pill">{market.category}</span>
-                    <span className={`pill pill-${market.status}`}>{market.status}</span>
-                    {movement && movement.delta !== 0 ? (
-                      <span
-                        className={`move-tag ${movement.delta > 0 ? "move-tag-up" : "move-tag-down"}`}
-                      >
-                        {formatSignedDelta(movement.delta)}c
-                      </span>
-                    ) : null}
-                  </div>
-                  <strong>{market.title}</strong>
-                  <div className="market-row-subcopy">
-                    {market.lastTickAt ? (
-                      <span className="small-copy" suppressHydrationWarning>
-                        Last trade {formatShortTime(market.lastTickAt)}
-                      </span>
-                    ) : (
-                      <span className="small-copy">No trades yet</span>
-                    )}
-                    <div className="row-sparkline-shell" aria-hidden="true">
-                      {market.tickProbabilities.length > 0 ? (
-                        <svg className="row-sparkline" viewBox="0 0 100 100" preserveAspectRatio="none">
-                          <path d={buildSparklinePath(market.tickProbabilities)} />
-                        </svg>
+                  <span className="market-cat-thumb" aria-hidden="true">{getCategoryIcon(market.category)}</span>
+                  <div className="market-main-text">
+                    <div className="question-meta">
+                      <span className="pill">{market.category}</span>
+                      <span className={`pill pill-${market.status}`}>{market.status}</span>
+                      {movement && movement.delta !== 0 ? (
+                        <span
+                          className={`move-tag ${movement.delta > 0 ? "move-tag-up" : "move-tag-down"}`}
+                        >
+                          {formatSignedDelta(movement.delta)}c
+                        </span>
                       ) : null}
+                    </div>
+                    <strong>{market.title}</strong>
+                    <div className="market-row-subcopy">
+                      {market.lastTickAt ? (
+                        <span className="small-copy" suppressHydrationWarning>
+                          Last trade {formatShortTime(market.lastTickAt)}
+                        </span>
+                      ) : (
+                        <span className="small-copy">No trades yet</span>
+                      )}
+                      <div className="row-sparkline-shell" aria-hidden="true">
+                        {market.tickProbabilities.length > 0 ? (
+                          <svg className="row-sparkline" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <path d={buildSparklinePath(market.tickProbabilities)} />
+                          </svg>
+                        ) : null}
+                      </div>
                     </div>
                   </div>
                 </Link>

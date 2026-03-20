@@ -1,5 +1,5 @@
 import type { AppForecastTick } from "@/lib/schema";
-import { formatShortTime } from "@/lib/utils";
+import { formatShortDate, formatShortTime } from "@/lib/utils";
 
 type MarketHistoryProps = {
   ticks: AppForecastTick[];
@@ -66,8 +66,8 @@ export function MarketHistory({ ticks }: MarketHistoryProps) {
       </div>
       {ticks.length > 1 && (
         <div className="chart-time-axis">
-          <span suppressHydrationWarning>{formatDate(ticks[0].createdAt)}</span>
-          <span suppressHydrationWarning>{formatDate(ticks[ticks.length - 1].createdAt)}</span>
+          <span suppressHydrationWarning>{formatShortDate(ticks[0].createdAt)}</span>
+          <span suppressHydrationWarning>{formatShortDate(ticks[ticks.length - 1].createdAt)}</span>
         </div>
       )}
 
