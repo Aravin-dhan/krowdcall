@@ -1909,6 +1909,86 @@ html[data-theme="light"] .chart-empty {
   color: var(--text);
 }
 
+/* ── Product tour ────────────────────────────────────── */
+
+.tour-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.tour-spotlight {
+  position: fixed;
+  z-index: 10000;
+  border-radius: 10px;
+  box-shadow: 0 0 0 4px var(--accent), 0 0 0 9999px rgba(0, 0, 0, 0.72);
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.tour-card {
+  background: var(--surface-strong);
+  border: 1px solid var(--outline-strong);
+  border-radius: var(--radius-panel);
+  padding: var(--space-5);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  animation: tour-pop 0.18s ease;
+}
+
+@keyframes tour-pop {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.tour-progress {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.tour-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--outline-strong);
+  transition: background 0.15s;
+}
+
+.tour-dot-active {
+  background: var(--accent);
+  width: 18px;
+  border-radius: 4px;
+}
+
+.tour-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.tour-body {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.tour-actions {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+  padding-top: var(--space-2);
+}
+
+.tour-skip {
+  margin-right: auto;
+}
+
 /* ── Onboarding banner ───────────────────────────────── */
 
 .onboarding-banner {

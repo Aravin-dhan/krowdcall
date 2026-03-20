@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 import { LiveBoardPanels } from "@/components/live-board-panels";
 import { LegalFooter } from "@/components/legal-footer";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { OnboardingBanner } from "@/components/onboarding-banner";
+import { ProductTour } from "@/components/product-tour";
 
 export default async function HomePage() {
   const [user, markets] = await Promise.all([getCurrentUser(), buildPublicMarketSnapshots()]);
@@ -42,7 +42,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {!user && <OnboardingBanner />}
+      {!user && <ProductTour />}
 
       <LiveBoardPanels initialMarkets={markets} userSignedIn={Boolean(user)} />
 
