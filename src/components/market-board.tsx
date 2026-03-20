@@ -48,7 +48,7 @@ function getCategoryIcon(category: string): string {
   const c = category.toLowerCase();
   if (c.includes("cricket")) return "🏏";
   if (c.includes("general election") || c.includes("lok sabha")) return "🏛️";
-  if (c.includes("west bengal")) return "🪷"; // lotus — state flower of WB
+  if (c.includes("west bengal")) return "🐯"; // Bengal Tiger — state animal, politically neutral
   if (c.includes("kerala")) return "🌴";
   if (c.includes("tamil") || c.includes("tn")) return "🏺";
   if (c.includes("assam")) return "🦏";
