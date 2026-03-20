@@ -1,5 +1,6 @@
 import {
   importElectionPackAction,
+  importIPLPackAction,
   resolveMarketDisputeAction,
   setQuestionStatusAction
 } from "@/app/actions";
@@ -71,11 +72,18 @@ export default async function AdminPage() {
             <h2>Market packs</h2>
             <span className="small-copy">Local bootstrap</span>
           </div>
-          <form action={importElectionPackAction}>
-            <button className="button button-secondary" type="submit">
-              Import 2026 elections
-            </button>
-          </form>
+          <div style={{display:"flex", gap:"0.5rem", flexWrap:"wrap"}}>
+            <form action={importElectionPackAction}>
+              <button className="button button-secondary" type="submit">
+                Import 2026 elections
+              </button>
+            </form>
+            <form action={importIPLPackAction}>
+              <button className="button button-secondary" type="submit">
+                Import IPL 2026 🏏
+              </button>
+            </form>
+          </div>
         </section>
       </div>
 

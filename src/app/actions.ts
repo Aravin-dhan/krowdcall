@@ -14,6 +14,7 @@ import {
   upsertForecast
 } from "@/lib/db";
 import { electionPack2026 } from "@/lib/election-pack";
+import { iplPack2026 } from "@/lib/ipl-pack";
 import {
   loginUser,
   logoutUser,
@@ -334,6 +335,19 @@ export async function importElectionPackAction() {
       slug,
       createdBy: admin.id
     });
+  }
+
+  redirect("/app/admin");
+}
+
+export async function importIPLPackAction() {
+  const admin = await requireAdmin();
+
+  for (const question of iplPack2026) {
+    const slug = slugify(question.title);
+    const existing = await getQuestionBySlug(slug);
+    if (existing) continue;
+    await createQuestion({ ...question, slug, createdBy: admin.id });
   }
 
   redirect("/app/admin");

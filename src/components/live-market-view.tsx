@@ -2,6 +2,54 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+
+function ShareCallButton({
+  title,
+  slug,
+  side,
+  probability
+}: {
+  title: string;
+  slug: string;
+  side: "agree" | "disagree";
+  probability: number;
+}) {
+  const [copied, setCopied] = useState(false);
+
+  const sideLabel = side === "agree" ? "YES" : "NO";
+  const url = `https://cruxd.in/markets/${slug}`;
+  const tweet = `I'm calling ${sideLabel} on "${title}" at ${probability}% confidence.\n\nWeigh in 👇\n${url}`;
+  const tweetUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
+
+  function handleCopy() {
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+
+  return (
+    <div className="share-call-row">
+      <span className="small-copy">Share your call</span>
+      <div className="share-call-buttons">
+        <a
+          className="button button-secondary share-btn"
+          href={tweetUrl}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63Zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+          Post
+        </a>
+        <button className="button button-secondary share-btn" onClick={handleCopy} type="button">
+          {copied ? "✓ Copied" : "Copy link"}
+        </button>
+      </div>
+    </div>
+  );
+}
 import { ForecastComposer } from "@/components/forecast-composer";
 import { MarketDisputeForm } from "@/components/market-dispute-form";
 import { MarketEnforcementPanel } from "@/components/market-enforcement-panel";
@@ -307,6 +355,14 @@ export function LiveMarketView({
                     : "No position"}
                 </strong>
               </div>
+              {userForecast && (
+                <ShareCallButton
+                  probability={Math.round(userForecast.probability)}
+                  side={userForecast.side as "agree" | "disagree"}
+                  slug={question.slug}
+                  title={question.title}
+                />
+              )}
               <section className="ticket-footnote">
                 <span className="small-copy">Enforcement</span>
                 <strong>Audit trail, source lock, and dispute review are live.</strong>

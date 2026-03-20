@@ -1677,6 +1677,35 @@ html[data-theme="light"] .chart-empty {
   background: #0d0d0e;
 }
 
+/* ── Share call row ── */
+.share-call-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 14px;
+  border: 1px solid var(--saffron-soft);
+  background: var(--saffron-soft);
+  flex-wrap: wrap;
+}
+.share-call-buttons {
+  display: flex;
+  gap: 0.4rem;
+}
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem !important;
+  min-height: 32px !important;
+  padding: 0.3rem 0.7rem !important;
+}
+html[data-theme="light"] .share-call-row {
+  border-color: rgba(233,90,46,0.2);
+  background: rgba(233,90,46,0.07);
+}
+
 .ticket-status {
   padding: 0.85rem 1rem;
   border-radius: 14px;
