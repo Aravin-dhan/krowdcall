@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LiveMarketView } from "@/components/live-market-view";
@@ -20,6 +21,27 @@ type MarketPageProps = {
     error?: string;
   }>;
 };
+
+export async function generateMetadata({ params }: MarketPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const question = await getQuestionBySlug(slug);
+  if (!question) return {};
+  const description = `Will it happen? Forecast yes/no on Cruxd. No real money — play coins only.`;
+  return {
+    title: question.title,
+    description,
+    openGraph: {
+      title: question.title,
+      description,
+      type: "website"
+    },
+    twitter: {
+      card: "summary",
+      title: question.title,
+      description
+    }
+  };
+}
 
 export default async function MarketPage({ params, searchParams }: MarketPageProps) {
   const { slug } = await params;

@@ -18,9 +18,31 @@ const mono = JetBrains_Mono({
   weight: ["400", "600"]
 });
 
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? process.env.APP_URL ?? "https://cruxd.in";
+
 export const metadata: Metadata = {
-  title: "Cruxd",
-  description: "Predict outcomes on real events. No real money. Just skill."
+  title: {
+    default: "Cruxd — Call it before the crowd",
+    template: "%s | Cruxd"
+  },
+  description: "Predict yes/no outcomes on real events — elections, cricket, world events. No real money. Play coins only. 18+.",
+  metadataBase: new URL(APP_URL),
+  openGraph: {
+    type: "website",
+    siteName: "Cruxd",
+    title: "Cruxd — Call it before the crowd",
+    description: "Predict yes/no outcomes on real events — elections, cricket, world events. No real money. Play coins only. 18+.",
+    url: "/",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Cruxd — Call it before the crowd" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cruxd — Call it before the crowd",
+    description: "Predict yes/no outcomes on real events — elections, cricket, world events. No real money. Play coins only. 18+.",
+    images: ["/opengraph-image"]
+  },
+  keywords: ["prediction market", "India", "elections 2026", "forecasting", "play money", "cricket", "West Bengal", "Tamil Nadu"],
+  robots: { index: true, follow: true }
 };
 
 export const viewport: Viewport = {
