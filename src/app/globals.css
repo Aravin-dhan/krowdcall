@@ -1231,6 +1231,47 @@ html[data-theme="light"] .summary-chip {
   background: var(--surface-strong);
 }
 
+html[data-theme="light"] .panel {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
+}
+
+html[data-theme="light"] .market-board-row::before {
+  background: var(--outline);
+}
+
+html[data-theme="light"] .market-board-row:hover::before {
+  background: var(--accent);
+}
+
+html[data-theme="light"] .button-buy {
+  box-shadow: 0 2px 8px rgba(30, 201, 123, 0.2);
+}
+
+html[data-theme="light"] .button-sell {
+  box-shadow: 0 2px 8px rgba(255, 92, 92, 0.2);
+}
+
+html[data-theme="light"] .category-chip-active {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+html[data-theme="light"] .tour-overlay {
+  background: rgba(0,0,0,0.55);
+}
+
+html[data-theme="light"] .tour-card {
+  background: var(--surface-strong);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+}
+
+html[data-theme="light"] .density-switch {
+  background: var(--surface-strong);
+}
+
+html[data-theme="light"] .density-switch-active {
+  background: var(--surface-soft) !important;
+}
+
 html[data-theme="light"] .chip-button {
   background: var(--surface-strong);
   border-color: var(--outline);
@@ -2176,4 +2217,161 @@ html[data-theme="light"] .chart-empty {
 
 .sidebar-legal-links a:hover {
   opacity: 1;
+}
+
+/* ── Auth page redesign ──────────────────────────────── */
+
+.auth-page-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.auth-topnav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--outline);
+  flex-shrink: 0;
+}
+
+.auth-topnav-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.auth-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3rem 1.5rem 2rem;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.auth-headline {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.auth-headline h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1;
+}
+
+.auth-headline p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+.auth-banner {
+  width: 100%;
+  max-width: 860px;
+}
+
+/* Fix auth-grid layout */
+.auth-center .auth-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+/* Fix panels inside auth */
+.auth-center .auth-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* CRITICAL: Fix checkbox overflow */
+.auth-center form {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.field-checkbox {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.field-checkbox span {
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  flex: 1;
+}
+
+/* Form divider (forgot password etc) */
+.form-divider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--outline);
+}
+
+@media (max-width: 680px) {
+  .auth-center .auth-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-center {
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .auth-topnav {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* ── Global spacing improvements ─────────────────────── */
+
+/* More breathing room between stacked panels */
+.stack > .panel + .panel {
+  margin-top: 0;
+}
+
+/* Better input focus ring */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--outline-strong);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.06);
+}
+
+/* Better field label */
+.field > span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+/* Light mode auth overrides */
+html[data-theme="light"] .auth-topnav {
+  border-color: var(--outline);
+}
+
+html[data-theme="light"] .form-divider {
+  border-color: var(--outline);
 }

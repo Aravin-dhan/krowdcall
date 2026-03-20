@@ -34,7 +34,11 @@ const SESSION_COOKIE = "cruxd_session";
 const SESSION_DAYS = 30;
 const EMAIL_TOKEN_HOURS = 24;
 const PASSWORD_RESET_HOURS = 2;
-const AUTO_VERIFY_LOCAL = process.env.AUTO_VERIFY_LOCAL === "1";
+// AUTO_VERIFY=1 skips email verification entirely (set in Vercel until domain is verified)
+// AUTO_VERIFY_LOCAL=1 skips only in non-production (legacy dev flag)
+const AUTO_VERIFY_LOCAL =
+  process.env.AUTO_VERIFY === "1" ||
+  (process.env.AUTO_VERIFY_LOCAL === "1" && process.env.NODE_ENV !== "production");
 
 type AuthResult =
   | {
@@ -300,7 +304,7 @@ export async function registerUser(input: {
   }
 
   const passwordHash = await hashPassword(input.password);
-  const shouldAutoVerify = AUTO_VERIFY_LOCAL && process.env.NODE_ENV !== "production";
+  const shouldAutoVerify = AUTO_VERIFY_LOCAL;
   const user = await createUser({
     email: normalizedEmail,
     displayName,
@@ -352,11 +356,11 @@ export async function loginUser(input: {
     return { ok: false, message: "Invalid email or password." };
   }
 
-  if (!user.emailVerifiedAt && AUTO_VERIFY_LOCAL && process.env.NODE_ENV !== "production") {
+  if (!user.emailVerifiedAt && AUTO_VERIFY_LOCAL) {
     await markUserEmailVerified(user.id);
   }
 
-  if (!user.emailVerifiedAt && !(AUTO_VERIFY_LOCAL && process.env.NODE_ENV !== "production")) {
+  if (!user.emailVerifiedAt && !AUTO_VERIFY_LOCAL) {
     try {
       await sendFreshVerificationEmail(user);
     } catch {
