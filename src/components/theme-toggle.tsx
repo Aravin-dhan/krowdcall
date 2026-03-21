@@ -33,11 +33,12 @@ export function ThemeToggle() {
       className="theme-toggle"
       onClick={toggleTheme}
       type="button"
+      suppressHydrationWarning
     >
       <span className="theme-toggle-track">
         <span className="theme-toggle-thumb" />
       </span>
-      <span>{theme === "dark" ? "Dark" : "Light"}</span>
+      <span suppressHydrationWarning>{theme === "dark" ? "Dark" : "Light"}</span>
     </button>
   );
 }
